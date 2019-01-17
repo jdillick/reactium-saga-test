@@ -23,7 +23,7 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
-    click: () => dispatch(deps.actions.Test.click()),
+    click: () => dispatch(deps.actions.Test.request()),
 });
 
 export default connect(

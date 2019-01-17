@@ -1,22 +1,9 @@
 import 'core-js/modules/es6.string.starts-with';
 import 'core-js/modules/es7.object.entries.js';
-import {
-    // call,
-    // takeEvery,
-    // takeLatest,
-    put,
-} from 'redux-saga/effects';
-
 import { App, AppError } from 'reactium-core/app';
-import { sagaMiddleware } from './components/redux-addons/Saga/middleware';
+import initSaga from './components/redux-addons/Saga';
 
 let render = App;
-
-function* mySaga() {
-    yield put({ type: 'SOME_ORDINARY_ACTION' });
-}
-
-sagaMiddleware(mySaga);
 
 /**
  * @description Initialize the app.
@@ -38,4 +25,5 @@ if (module.hot) {
     );
 }
 
+initSaga();
 render();

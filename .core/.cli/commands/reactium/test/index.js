@@ -31,11 +31,11 @@ const formatDestination = (val, props) => {
 /**
  * NAME String
  * @description Constant defined as the command name. Value passed to the commander.command() function.
- * @example $ arcli library
+ * @example $ arcli test
  * @see https://www.npmjs.com/package/commander#command-specific-options
  * @since 2.0.0
  */
-const NAME = 'library';
+const NAME = 'test';
 
 /**
  * DESC String
@@ -44,7 +44,7 @@ const NAME = 'library';
  * @see https://www.npmjs.com/package/commander#automated---help
  * @since 2.0.0
  */
-const DESC = 'Reactium: Convert a component into a library component.';
+const DESC = 'Reactium: Add a jest/enzyme test to your component.';
 
 /**
  * CANCELED String
@@ -123,8 +123,8 @@ const CONFORM = ({ input, props }) =>
 const HELP = () =>
     console.log(`
 Example:
-  $ arcli library -d components/MyComponent
-  $ arcli library -d common-ui/MyCommonUiComponent
+  $ arcli test -d components/MyComponent
+  $ arcli test -d common-ui/MyCommonUiComponent
 
 When specifying the destination [-d, --destination] the following shortcuts are available:
   ${chalk.cyan('components/')}  The /.src/app/components directory.
@@ -162,7 +162,7 @@ const PREFLIGHT = ({ msg, params, props }) => {
     msg =
         msg ||
         `A new ${chalk.cyan(
-            'library.js',
+            'test.js',
         )} file will be generated with the following options:`;
 
     message(msg);
@@ -199,6 +199,7 @@ const SCHEMA = ({ props }) => {
             from: {
                 description: chalk.white('Import from:'),
                 default: './index',
+                required: true,
             },
         },
     };
@@ -276,14 +277,11 @@ const COMMAND = ({ program, props }) =>
         .action(opt => ACTION({ opt, props }))
         .option('-d, --destination [destination]', 'The component directory.')
         .option('-c, --component [component]', 'The component name.')
-        .option(
-            '-o, --overwrite [overwrite]',
-            'Overwrite existing library file.',
-        )
+        .option('-o, --overwrite [overwrite]', 'Overwrite existing test file.')
         .option(
             '-f, --from [from]',
             `The component import path relative to the ${chalk.cyan(
-                'library.js',
+                'test.js',
             )} file. Default: ${chalk.cyan('./index')}`,
         )
         .on('--help', HELP);

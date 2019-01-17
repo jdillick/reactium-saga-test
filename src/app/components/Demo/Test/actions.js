@@ -1,7 +1,21 @@
 import React from 'react';
 import deps from 'dependencies';
+import { delay } from 'redux-saga';
+import { put } from 'redux-saga/effects';
+
+const request = () => ({
+    type: deps.actionTypes.TEST_ASYNC_CLICK,
+});
+
+const click = () => dispatch =>
+    dispatch({
+        type: deps.actionTypes.TEST_CLICK,
+    });
 
 export default {
+    click,
+    request,
+
     mount: params => (dispatch, getState) => {
         // Demonstrate Run-time Plugins
         dispatch(
@@ -46,7 +60,10 @@ export default {
         }
     },
 
-    click: () => dispatch => {
-        dispatch({ type: deps.actionTypes.TEST_CLICK });
+    sagas: {
+        click: function*() {
+            yield delay(1000);
+            yield put(click());
+        },
     },
 };

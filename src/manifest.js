@@ -59,6 +59,8 @@ module.exports = {
                 Test: require('components/Demo/Test/services').default,
             },
             allMiddleware: {
+                Saga: require('components/redux-addons/Saga/middleware')
+                    .default,
                 redux: require('reactium-core/redux/middleware').default,
             },
             allEnhancers: {
@@ -161,7 +163,10 @@ module.exports = {
             },
             allMiddleware: {
                 type: 'middleware',
-                imports: ['reactium-core/redux/middleware'],
+                imports: [
+                    'components/redux-addons/Saga/middleware',
+                    'reactium-core/redux/middleware',
+                ],
             },
             allEnhancers: {
                 type: 'enhancer',
