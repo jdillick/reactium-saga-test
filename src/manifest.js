@@ -71,6 +71,9 @@ module.exports = {
                 TestPlugin: require('components/Demo/Test/TestPlugin/plugin')
                     .default,
             },
+            allSagas: {
+                Test: require('components/Demo/Test/saga').default,
+            },
         };
     },
     contexts: {
@@ -178,6 +181,10 @@ module.exports = {
                     'components/Demo/Site/Button/plugin',
                     'components/Demo/Test/TestPlugin/plugin',
                 ],
+            },
+            allSagas: {
+                type: 'saga',
+                imports: ['components/Demo/Test/saga'],
             },
         };
     },

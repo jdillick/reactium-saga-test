@@ -59,11 +59,4 @@ export default {
             );
         }
     },
-
-    sagas: {
-        click: function*() {
-            yield delay(1000);
-            yield put(click());
-        },
-    },
 };
