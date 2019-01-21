@@ -1,7 +1,7 @@
 import 'core-js/modules/es6.string.starts-with';
 import 'core-js/modules/es7.object.entries.js';
+
 import { App, AppError } from 'reactium-core/app';
-import initSaga from './components/redux-addons/Saga';
 
 let render = App;
 
@@ -25,5 +25,4 @@ if (module.hot) {
     );
 }
 
-initSaga();
 render();
